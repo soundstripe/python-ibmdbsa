@@ -18,7 +18,6 @@
 # +--------------------------------------------------------------------------+
 from sqlalchemy import util
 import urllib
-from future.utils import iteritems
 from sqlalchemy.connectors.pyodbc import PyODBCConnector
 from .base import _SelectLastRowIDMixin, DB2ExecutionContext, DB2Dialect
 from . import reflection as ibm_reflection
@@ -84,7 +83,7 @@ class DB2Dialect_pyodbc(PyODBCConnector, DB2Dialect):
                                         keys.pop("odbc_autotranslate"))
 
             connectors.extend(['%s=%s' % (k, v)
-                                    for k, v in iteritems(keys)])
+                                    for k, v in keys.items()])
         return [[";".join(connectors)], connect_args]
 
 class AS400Dialect_pyodbc(PyODBCConnector, DB2Dialect):
